@@ -308,6 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2845996171021639055}
   - component: {fileID: 952334766841652853}
+  - component: {fileID: 6433913154394166011}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -349,6 +350,23 @@ MonoBehaviour:
   _root: {fileID: 2074942536214608658}
   _leaf: {fileID: 671150386727499038}
   _flower: {fileID: 5235043082266052282}
+  _minSunLevel: 0
+  _minWaterLevel: 0
+  _currentWaterLevel: 0
+  _currentSunLevel: 0
+--- !u!114 &6433913154394166011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233048187955982512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6596618cab354c439ec881bcf1d1a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _daysBeforeNextGrow: 1
 --- !u!1 &8526760427867735046
 GameObject:
   m_ObjectHideFlags: 0
