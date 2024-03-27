@@ -49,7 +49,7 @@ public class Plant : MonoBehaviour
     #endregion
 
     [Button, ShowIf("IsGamePlaying")]
-    public void TestInit() => InitPlant(_testSeed); 
+    public void TestInit() => InitPlant(_testSeed);
     
     public void InitPlant(SeedData data)
     {
@@ -70,12 +70,21 @@ public class Plant : MonoBehaviour
     }
 
     #region Stage
+    public void SetStage(GROW_STAGE stage)
+    {
+        _currentStage = stage;
+        InitStage(stage);
+    }
     public void IncreaseStage()
     {
         if (_currentStage != GROW_STAGE.STAGE3)
         {
             _currentStage++;
             InitStage(_currentStage);
+        }
+        else
+        {
+            Die();
         }
     }
     [Button, ShowIf("IsGamePlaying")]
