@@ -656,7 +656,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1447273502}
         m_TargetAssemblyTypeName: DaySystem, Assembly-CSharp
-        m_MethodName: OnDayPassedAction
+        m_MethodName: OnDayPassedFunction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   _startDayHour: 8
   _endDayHour: 20
   _timeMultiplier: 1
-  OnDayPassed:
+  UnityOnDayPassed:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1447273503
