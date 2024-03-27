@@ -4,6 +4,7 @@ using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using System;
 
 public class DaySystem : MonoBehaviour
 {
@@ -24,8 +25,7 @@ public class DaySystem : MonoBehaviour
     private float _secondsInFullDay;
 
     public UnityEvent UnityOnDayPassed;
-    delegate void OnDayPassedAction();
-    OnDayPassedAction OnDayPassed;
+    public event Action OnDayPassed;
 
     private bool _timePassing;
     #endregion
@@ -97,5 +97,10 @@ public class DaySystem : MonoBehaviour
     {
         _pauseDay.SetActive(false);
         _timePassing = true;
+    }
+
+    void OnDestroy()
+    {
+        OnDayPassed -= OnDayPassedFunction;
     }
 }
