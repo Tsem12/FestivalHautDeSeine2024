@@ -48,6 +48,12 @@ public class Plant : MonoBehaviour
 
     #endregion
 
+    private void Start()
+    {
+        InitPlant(_testSeed);
+        InitStageToNone();
+    }
+
     [Button, ShowIf("IsGamePlaying")]
     public void TestInit() => InitPlant(_testSeed);
     

@@ -1,14 +1,20 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GrowPlant : MonoBehaviour
 {
     private Plant _plant;
 
-    [SerializeField] private int _daysBeforeNextGrow;
+    [SerializeField] private int _daysNeededForNextGrow;
     private int _nextGrowCounter;
+
+    public UnityEvent OnGrowUnityEvent;
+    public event Action OnGrow;
+
 
     private void Awake()
     {
@@ -16,11 +22,25 @@ public class GrowPlant : MonoBehaviour
     }
     private void Start()
     {
-        //Inscrire CallNextState a OnDayPassed du DaySystem
+        OnGrow += _plant.IncreaseStage;
+
+        if (DaySystem.instance != null)
+        {
+            DaySystem.instance.OnDayPassed += CallNextState;
+        }
+        else
+        {
+            Debug.LogWarning("You're missing the DaySystem instance in your scene ! Grow system with DayPassed won't work.");
+        }
     }
     private void OnDestroy()
     {
-        //Desinscrire CallNextState a OnDayPassed du DaySystem
+        OnGrow -= _plant.IncreaseStage;
+
+        if (DaySystem.instance != null)
+        {
+            DaySystem.instance.OnDayPassed -= CallNextState;
+        }
     }
 
     #region Grow
@@ -34,7 +54,7 @@ public class GrowPlant : MonoBehaviour
         if (HasResources())    // Si a les ressources -> grandit
         {
             _nextGrowCounter++;
-            if (_nextGrowCounter >= _daysBeforeNextGrow)    // check si assez attendue pour grandir
+            if (_nextGrowCounter >= _daysNeededForNextGrow)    // check si assez attendue pour grandir
             {
                 _nextGrowCounter = 0;
                 Grow();
@@ -62,7 +82,8 @@ public class GrowPlant : MonoBehaviour
     }
     private void Grow()
     {
-        _plant.IncreaseStage();
+        OnGrow?.Invoke();
+        OnGrowUnityEvent?.Invoke();
     }
     #endregion
 }
