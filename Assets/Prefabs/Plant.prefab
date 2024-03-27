@@ -435,7 +435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6596618cab354c439ec881bcf1d1a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _daysBeforeNextGrow: 1
+  _daysNeededForNextGrow: 1
+  OnGrowUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2813513130613387867
 MonoBehaviour:
   m_ObjectHideFlags: 0
